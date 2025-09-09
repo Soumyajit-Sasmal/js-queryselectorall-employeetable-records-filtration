@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Table</title>
+  <style>
+    body {
+      background-color: #0a0f1c;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    .mytab {
+      font-size: 2.8vh;
+      position: fixed;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6);
+      border-radius: 14px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInScale 1s forwards;
+    }
+
+    .mytab th {
+      width: 12vw;
+      background: #2b2b2b;
+      padding: 2vh;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background-size: 200% auto;
+      animation: gradientMove 6s linear infinite;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .mytab th,tr:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      
+    }
+
+    .mytab td {
+      width: 12vw;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2vh;
+      text-align: center;
+      border: 1px solid BLACK;
+          
+     
+    }
+
+    
+    .theme {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin: 20px 10px;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-box {
+      margin-top: 30px;
+    }
+    .search-box input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      width: 200px;
+      text-align: center;
+    }
+    .search-box button {
+      padding: 10px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #00c853;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .search-box button:hover {
+      background: #00e676;
+    }
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: translateX(-50%) scale(0.8); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    .mytab tr {
+      display:flex;
+     
+    }
+  </style>
+</head>
+<body id="bd">
+  <!-- Theme buttons -->
+  <div class="theme" onclick="theme1()" style="background:linear-gradient(135deg,#004e92,#000428);"></div> 
+  <div class="theme" onclick="theme2()" style="background:linear-gradient(135deg,#ffd700,#ffb300);"></div>
+
+  <!-- Search Bar -->
+  <div class="search-box">
+    <input type="text" id="searchId" placeholder="Enter Employee ID/NAME">
+    <button>Search</button>
+  </div>
+
+  <!-- Table -->
+  <table class="mytab" id="table">
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>Salary</th>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>Raj Das</td>
+      <td>34000</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Rajib Das</td>
+      <td>45000</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Rhul Das</td>
+      <td>34000</td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>soumyajit sasmal</td>
+      <td>78000</td>
+    </tr>
+     <tr>
+      <td>124</td>
+      <td>Ram Das</td>
+      <td>78000</td>
+    </tr>
+      <tr>
+      <td>125</td>
+      <td>soumyadeep sasmal</td>
+      <td>68000</td>
+    </tr>
+  </table>
+  <span id="disp"> </span>
+
+  <script>
+    // Theme 1 → Futuristic Green-Blue theme
+    function theme1() {
+      document.getElementById('bd').style.background = 
+        "linear-gradient(120deg, #004e92, #000428)";
+
+      var tds = document.querySelectorAll(".mytab td");
+      for (var i = 0; i < tds.length; i++) {
+        tds[i].style.background = "rgba(0, 200, 83, 0.25)";
+        tds[i].style.color = "#e0ffe5";
+      }
+
+      var ths = document.querySelectorAll(".mytab th");
+      for (var i = 0; i < ths.length; i++) {
+        ths[i].style.background = 
+          "linear-gradient(270deg, #00c853, #00e676, #00c853)";
+        ths[i].style.color = "white";
+      }
+    }
+
+    // Theme 2 → Royal Purple + Animated Gold theme
+    function theme2() {
+      document.getElementById('bd').style.background =
+        "linear-gradient(135deg, #1f0036, #5f0f40, #9a031e)";
+
+      var tds = document.querySelectorAll(".mytab td");   // array creations 
+      for (var i = 0; i < tds.length; i++) {
+        tds[i].style.background = "rgba(255, 255, 255, 0.15)";
+        tds[i].style.color = "#f1e9e9";
+      }
+
+      var ths = document.querySelectorAll(".mytab th");
+      for (var i = 0; i < ths.length; i++) {
+        ths[i].style.background = 
+          "linear-gradient(270deg, #ffd700, #ffb300, #ffd700)";
+        ths[i].style.color = "#2b2b2b";
+      }
+    }
+
+  // serch row part-------------------
+  function getidname(){
+    var s=document.getElementById('searchId').value  // value get 
+    document.getElementById('disp').innerHTML=s;  //   checking purpose 
+    var tds= document.querySelectorAll(".mytab td");
+    if(/[0-9]/.test(s)){
+        for (var i = 0; i<tds.length; i+=3) {
+        if (tds[i].textContent.includes(s))   //  basicall substring just some part match so,show ......
+        {
+          
+          tds[i].style.cssText="display:block;"
+          tds[i+1].style.cssText="display:block;"
+          tds[i+2].style.cssText="display:block;"
+        }  
+        else{
+          tds[i].style.cssText="display:none;"
+          tds[i+1].style.cssText="display:none;"
+          tds[i+2].style.cssText="display:none;"
+
+        } // match   concatinate store ...value fetch.....
+    } }
+    else{
+        for (var i = 1; i<tds.length; i+=3) {
+        if (tds[i].textContent.includes(s))   //  basicall substring just some part match so,show ......
+        {
+          
+          tds[i].style.cssText="display:block;"
+          tds[i+1].style.cssText="display:block;"
+          tds[i-1].style.cssText="display:block;"
+        }  
+        else{
+          tds[i].style.cssText="display:none;"
+          tds[i+1].style.cssText="display:none;"
+          tds[i-1].style.cssText="display:none;"
+
+        } // match   concatinate store ...value fetch.....
+        
+    }
+}document.getElementById('searchId').addEventListener("input",getidname);}
+getidname();
+
+   
+    
+
+ 
+  </script>
+</body>
+</html>
