@@ -15,7 +15,7 @@ __✅ Filtration works only by Name and Employee ID.__
 
 __🎯 When a record matches (for example: ID = 102, Name = Soumyajit Sasmal), only that row remains visible and all other rows are hidden using display: none.__
 
-__🚩This keeps the focus on how querySelectorAll can handle multiple elements efficiently for simple search tasks.__
-##📬 Contact / credits
+__🚩This keeps the focus on how querySelectorAll can handle multiple elements efficiently for simple search tasks.__ <br>
+## 📬 Contact / credits
 
 __Author: @@@@SOUMYAJIT — include contact or social links in the repo profile.__
